@@ -1,12 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-var data = {
-  id: Number,
-  name: String,
-  spouse: [],
-  children: []
-}
+var data = {}
 
 const state = {
   TreeArray: data

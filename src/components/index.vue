@@ -1,12 +1,16 @@
 <template>
   <div class="index-page">
-   
+
   </div>
 </template>
 
 <script>
+import UserForm from './form/user-form'
 export default {
   name: 'IndexPage',
+  comments:{
+    UserForm
+  },
   data () {
     return {
 

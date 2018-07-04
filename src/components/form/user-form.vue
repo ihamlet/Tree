@@ -1,24 +1,40 @@
 <template>
     <div class="user-form">
-        <van-popup v-model="show">内容</van-popup>
+        <h2 class="title">开始</h2>
+        <van-cell-group>
+            <van-field label="姓名" v-model="treeData.name" placeholder="请输入姓名" />
+        </van-cell-group>
     </div>
 </template>
 <script>
-import { Popup } from 'vant'
+import { CellGroup, Field } from 'vant';
+
+var data = {
+  id: '',
+  name: '',
+  spouse: [],
+  children: []
+}
 
 export default {
     name:'UserForm',
+    components:{
+        [CellGroup.name]:CellGroup,
+        [Field.name]:Field
+    },
     data(){
         return {
             show: false,
-            treeData:''
+            treeData: data
         }
     },
     created(){
-        this.treeData = this.$store.state.TreeArray
+        
     }    
 }
 </script>
 <style scoped>
-
+.title{
+    text-align: center;
+}
 </style>
