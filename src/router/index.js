@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Index from '@/components/index'
+import UserForm from '@/components/form/user-form'
 
 Vue.use(Router)
 
@@ -8,8 +9,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'index',
+      component: Index
+    }, {
+      path: '/user-form',
+      name: 'UserForm',
+      component: UserForm
     }
   ]
 })
