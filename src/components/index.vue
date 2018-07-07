@@ -1,20 +1,20 @@
 <template>
   <div class="index-page">
-
+    <div class="container">
+        <router-view/>
+        <FooterTab/>
+    </div>
   </div>
 </template>
 
 <script>
-import UserForm from './form/user-form'
+
+import FooterTab from './pages/module/footer'
+
 export default {
   name: 'IndexPage',
-  comments:{
-    UserForm
-  },
-  data () {
-    return {
-
-    }
+  components:{
+    FooterTab
   }
 }
 </script>
