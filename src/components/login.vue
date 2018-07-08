@@ -11,8 +11,13 @@
 
         <div class="btn-column">
             <van-button size="large" :loading='state.loading' type="primary" @click="Login">登陆</van-button>
-        </div>
 
+            <div class="router-link">
+                <router-link to='/' tag="a" class="left">忘记密码</router-link>
+                <router-link to='/reg' tag="a" class="right">新用户注册</router-link>
+            </div>
+        </div>
+       
         <van-popup class="cue" v-model="state.showPopup" position="top" :overlay="false">
             {{msg.submitMsg}}
         </van-popup>
@@ -109,11 +114,11 @@ export default {
                 
                 setTimeout(()=>{
                     if(this.$store.state.Code.err_code  == 1010){
-                        this.$router.push({ name: 'reg'})
+                        this.$router.replace({ name: 'reg'})
                     }
                     if(this.$store.state.Code.err_code == 0){
                         this.$store.commit('isLogin')
-                        this.$router.push({ name: 'tree'})
+                        this.$router.replace({ name: 'tree'})
                     }
                     this.state.showPopup = false
                     this.state.loading = false

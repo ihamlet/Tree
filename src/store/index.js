@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 const state = {
   Code: '',
+  showUserForm: false,
   TreeArray: '',
   isLogin: false,
   UserReg: null
@@ -17,6 +18,9 @@ const mutations = {
   },
   getUserReg (state, params) {
     state.UserReg = params
+  },
+  showUserForm (state) {
+    state.showUserForm = true
   },
   getTreeArray (state, params) {
     state.TreeArray = params

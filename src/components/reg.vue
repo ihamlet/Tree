@@ -5,7 +5,7 @@
             <p class="slogan">请填写表单完善以下信息</p>
         </div>
         <van-cell-group class="list-form">
-            <van-field label="手机号" required v-model="treeData.phone" :error-message="errorMsg.errorPhone" placeholder="请输入手机号" @click-icon="$toast('手机号会作为登陆账号')" icon="question" />
+            <van-field label="手机号" required v-model="treeData[0].phone" :error-message="errorMsg.errorPhone" placeholder="请输入手机号" @click-icon="$toast('手机号会作为登陆账号')" icon="question" />
              <van-field v-model="PassWord" type="password" label="密码" :error-message="errorMsg.errorPassWord" placeholder="请输入密码" required/>
         </van-cell-group>
         </van-cell-group>
@@ -22,16 +22,16 @@
             <van-area :area-list="areaList" @cancel='cancelArea' @confirm='confirmArea' @change="onChange" />
         </van-popup>
 
-        <van-popup v-model="state.showUserForm" position="right" :close-on-click-overlay='false' :overlay-style='PageStyle' class="page">
+        <van-popup v-model="$store.state.showUserForm" position="right" :close-on-click-overlay='false' :overlay-style='PageStyle' class="page">
             <div class="layer">
-                <h2 class="title">家庭成员</h2>
+                <h2 class="title">开始</h2>
                 <p class="slogan">请填写表单完善以下信息</p>
             </div>
             
             <van-cell-group class="list-form">
-                <van-field label="您的姓名" required v-model="treeData.name" placeholder="请输入姓名" :error-message="errorMsg.errorUserName" />
-                <van-field label="出生年月" v-model="treeData.birthday" @focus="openDate" :readonly='true' placeholder="请选择日期" />
-                <van-field label="所在地区" v-model="treeData.area" @focus="openArea" :readonly='true' placeholder="请选择地区" />
+                <van-field label="您的姓名" required v-model="treeData[0].name" placeholder="请输入姓名" :error-message="errorMsg.errorUserName" />
+                <van-field label="出生年月" v-model="treeData[0].birthday" @focus="openDate" :readonly='true' placeholder="请选择日期" />
+                <van-field label="所在地区" v-model="treeData[0].area" @focus="openArea" :readonly='true' placeholder="请选择地区" />
             </van-cell-group>
 
             <van-radio-group v-model="radio">
@@ -61,15 +61,15 @@ import { OperationNumber, timetrans } from './lib/mixins.js'
 import areaDate from './Data/area.js'
 import { Popup, DatetimePicker, Area, CellGroup, Field, Toast, Cell, RadioGroup, Radio, Button } from 'vant';
 
-var data = {
-  id: '',
-  name: '',
-  phone:'',
-  sex:'',
-  area:'',
-  birthday:'',
-  spouse: []
-}
+var data = [{
+    id: '',
+    name: '',
+    phone:'',
+    sex:'',
+    area:'',
+    birthday:'',
+    spouse: []
+}]
 
 export default {
     name:'UserForm',
@@ -91,7 +91,6 @@ export default {
                 showDate: false,
                 showArea: false,
                 showPopup: false,
-                showUserForm: false,
                 showKeyboard:true,
                 loading: false,
             },
@@ -123,20 +122,20 @@ export default {
     },
     watch:{
         currentDate(){
-            this.treeData.birthday = timetrans(this.currentDate.valueOf())
+            this.treeData[0].birthday = timetrans(this.currentDate.valueOf())
         },
         radio(msg){
            if(msg == 1){
-               this.treeData.sex = 'man'
+               this.treeData[0].sex = 'man'
            }
            if(msg == 2){
-               this.treeData.sex = 'woman'
+               this.treeData[0].sex = 'woman'
            }
         }
     },
     created(){
-        this.treeData.sex = 'man'
-        this.treeData.id = OperationNumber(8)
+        this.treeData[0].sex = 'man'
+        this.treeData[0].id = OperationNumber(8)
     },
     methods:{
         openDate(){
@@ -165,14 +164,14 @@ export default {
         NextStep(){
             var regPhone = /^1[34578]\d{9}$/
 
-            if(this.treeData.phone.length == 0){
+            if(this.treeData[0].phone.length == 0){
                 this.errorMsg.errorPhone = '请输入手机号'
                 this.validate.validatePhone = false
                 setTimeout(()=>{
                         this.errorMsg.errorPhone  = ''
                 },2000)
             } else{
-                if(!regPhone.test(this.treeData.phone)) {
+                if(!regPhone.test(this.treeData[0].phone)) {
                     this.errorMsg.errorPhone = '请输入正确的手机号'
                     this.validate.validatePhone = false
                     setTimeout(()=>{
@@ -195,7 +194,7 @@ export default {
 
             if(this.validate.validatePhone && this.validate.validatePassWord){
                 var UserReg = {
-                    username: this.treeData.phone,
+                    username: this.treeData[0].phone,
                     password: this.PassWord
                 }
 
@@ -212,10 +211,10 @@ export default {
 
                 setTimeout(()=>{
                     if(this.$store.state.Code.err_code == 1007){
-                        this.$router.push({ name: 'login'})
+                        this.$router.replace({ name: 'login'})
                     }
                     if(this.$store.state.Code.err_code == 0){
-                        this.state.showUserForm = true
+                        this.$store.commit('showUserForm',true)
                     }
                     this.state.loading = false
                     this.state.showPopup = false
@@ -231,14 +230,14 @@ export default {
         SubmitForm(){
             var regUserName = /^[\u4E00-\u9FA5]{2,4}$/
 
-            if(this.treeData.name.length == 0){
+            if(this.treeData[0].name.length == 0){
                 this.errorMsg.errorUserName = '请输入姓名'
                 this.validate.validatePhone = false
                 setTimeout(()=>{
                     this.errorMsg.errorUserName = ''
                 },2000)
             } else{
-                if(!regUserName.test(this.treeData.name)) {
+                if(!regUserName.test(this.treeData[0].name)) {
                     this.errorMsg.errorUserName = '请输入正确的姓名'
                     this.validate.validateUserName = false
                     setTimeout(()=>{
@@ -248,7 +247,7 @@ export default {
                     this.validate.validateUserName = true
                     this.$store.commit('getTreeArray',this.treeData)
                     this.$store.commit('isLogin')
-                    this.$router.push({ name: 'tree'})
+                    this.$router.replace({ name: 'tree'})
                 }
             }
 
