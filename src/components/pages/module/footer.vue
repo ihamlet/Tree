@@ -11,5 +11,13 @@ export default {
 }
 </script>
 <style scoped>
-
+.footer-tab{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 46px;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ededed;
+}
 </style>

@@ -1,9 +1,11 @@
 <template>
-    <div class="tree">
-        <ul class="item" v-for='item in TreeData'>
-            <TreeList :model='item'/>
-        </ul>
-        <div class="add" @click="add">+</div>
+    <div class="wrap">
+        <div class="tree">
+            <ul class="item" v-for='item in TreeData'>
+                <TreeList :model='item'/>
+            </ul>
+        </div>
+         <div class="add" @click="add">+</div>
     </div>
 </template>
 
@@ -42,5 +44,15 @@ export default {
 }
 </script>
 <style scoped>
+.wrap{
+    overflow: scroll;
+}
 
+.tree{
+    display: flex;
+    white-space: nowrap;
+    justify-content:center;
+    vertical-align: top;
+}
 </style>
+
