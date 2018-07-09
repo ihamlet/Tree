@@ -37,6 +37,7 @@ export default {
     display: inline-block;
     text-align: center;
     vertical-align: top;
+    padding: 10px;
 }
 
 .list{

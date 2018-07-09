@@ -53,6 +53,7 @@ export default {
     white-space: nowrap;
     justify-content:center;
     vertical-align: top;
+    padding: 10px;
 }
 </style>
 
