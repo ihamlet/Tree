@@ -54,6 +54,7 @@ export default {
     justify-content:center;
     vertical-align: top;
     padding: 10px;
+    float: left;
 }
 </style>
 
