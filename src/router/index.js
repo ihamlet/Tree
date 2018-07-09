@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/index'
-import Tree from '@/components/pages/tree'
+import Tree from '@/components/pages/tree/tree'
 import Login from '@/components/login'
 import Reg from '@/components/reg'
 
