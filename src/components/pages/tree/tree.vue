@@ -1,5 +1,6 @@
 <template>
     <div class="wrap">
+        <div class="addRoot" @click="addRoot">+</div>
         <div class="tree">
             <ul class="item" v-for='(item,i) in TreeData'>
                 <TreeList :model='item' @AddLeftChange='addLeft(i)' @AddRightChange='addRight(i)'/>
@@ -37,10 +38,13 @@ export default {
     },
     methods:{
         addLeft(i){
-            this.TreeData.splice(i,0,{name:"添加哥哥"})
+            this.TreeData.splice(i,0,{name:"添加兄弟"})
         },
         addRight(i){
-            this.TreeData.splice(i+1,0,{name:"添加姐姐"})
+            this.TreeData.splice(i+1,0,{name:"添加姐妹"})
+        },
+        addRoot(){
+            console.log(this.$root)
         }
     }
 }
