@@ -55,4 +55,20 @@ input:-webkit-autofill {
 .right{
     float: right;
 }
+
+html,body{
+    height: 100%;
+}
+
+#app{
+    height:100%;
+}
+
+.index-page{
+    height: 100%;
+}
+
+.container{
+    height: 100%;
+}
 </style>

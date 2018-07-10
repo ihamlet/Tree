@@ -1,29 +1,44 @@
 <template>
     <li class="list">
-            <div class="tree-info">
-                <div class="name">{{model.name}}</div>
+        <div class="tree-info">
+            <span class="name">{{model.name}}</span>
+            <div class="add">
+                <span class="add-left" @click="addLeft">+</span>
+                <span class="add-right" @click="addRihgt">+</span>
             </div>
-            <ul class="item" v-if='model.childList' v-for='cel in model.childList'>
-                <div class="addKind" @click="addKind">+</div>
-                <tree-menu :model='cel'></tree-menu>
-            </ul>
             <div class="addChild" @click="addChild">+</div>
+        </div>
+
+        <ul class="item" v-if='model.children' v-for='cel in model.children'>
+            <tree-menu :model='cel'></tree-menu>
+        </ul>
     </li>    
 </template>
 <script>
 export default {
     name: 'treeMenu',
-    props:['model'],
+    props:['model','indexValue'],
     data(){
         return{
             child:[{
-                name:'bbbb'
+                name:'添加子女'
             }]
+        }
+    },  
+    computed: {
+        isFolder(){
+            return this.model.children && this.model.children.length
         }
     },
     methods:{
+        addLeft(){
+            this.$emit('AddLeftChange')
+        },
+        addRihgt(){
+            this.$emit('AddRightChange')
+        },
         addChild(){
-            this.$set(this.model,'childList',this.child)
+            this.model.children.push({name:"ccccc"})
         },
         addKind(){
             this.child.push({name:'cccc'})
@@ -37,7 +52,6 @@ export default {
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    padding: 10px;
 }
 
 .list{

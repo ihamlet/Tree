@@ -1,11 +1,10 @@
 <template>
     <div class="wrap">
         <div class="tree">
-            <ul class="item" v-for='item in TreeData'>
-                <TreeList :model='item'/>
+            <ul class="item" v-for='(item,i) in TreeData'>
+                <TreeList :model='item' @AddLeftChange='addLeft(i)' @AddRightChange='addRight(i)'/>
             </ul>
         </div>
-         <div class="add" @click="add">+</div>
     </div>
 </template>
 
@@ -37,8 +36,11 @@ export default {
         })
     },
     methods:{
-        add(){
-            this.TreeData.push({name:"aaaa"})
+        addLeft(i){
+            this.TreeData.splice(i,0,{name:"添加哥哥"})
+        },
+        addRight(i){
+            this.TreeData.splice(i+1,0,{name:"添加姐姐"})
         }
     }
 }
@@ -46,6 +48,8 @@ export default {
 <style scoped>
 .wrap{
     overflow: scroll;
+    height: 100%;
+    float: left;
 }
 
 .tree{
@@ -54,7 +58,6 @@ export default {
     justify-content:center;
     vertical-align: top;
     padding: 10px;
-    float: left;
 }
 </style>
 

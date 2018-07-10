@@ -69,7 +69,7 @@ var data = [{
     area:'',
     birthday:'',
     spouse: [],
-    childList:[],
+    children:[],
 }]
 
 export default {
