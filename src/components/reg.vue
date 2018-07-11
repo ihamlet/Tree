@@ -14,14 +14,6 @@
             <van-button size="large" :loading='state.loading' @click="NextStep">注册,下一步</van-button>
         </div>
 
-        <van-popup v-model="state.showDate" position="bottom">
-            <van-datetime-picker v-model="currentDate" type="date" @cancel='cancelDate' @confirm='confirmDate' :min-date="DateValue.minDate" />
-        </van-popup>
-
-        <van-popup v-model="state.showArea" position="bottom">
-            <van-area :area-list="areaList" @cancel='cancelArea' @confirm='confirmArea' @change="onChange" />
-        </van-popup>
-
         <van-popup v-model="$store.state.showUserForm" position="right" :close-on-click-overlay='false' :overlay-style='PageStyle' class="page">
             <div class="layer">
                 <h2 class="title">开始</h2>
@@ -45,6 +37,16 @@
                     </van-cell>
             </van-cell-group>
         </van-radio-group>
+
+
+        <van-popup v-model="state.showDate" position="bottom">
+            <van-datetime-picker v-model="currentDate" type="date" @cancel='cancelDate' @confirm='confirmDate' :visible-item-count='8' :min-date="DateValue.minDate" />
+        </van-popup>
+
+        <van-popup v-model="state.showArea" position="bottom">
+            <van-area :area-list="areaList" @cancel='cancelArea' @confirm='confirmArea' :visible-item-count='7' @change="onChange" />
+        </van-popup>
+
 
         <div class="btn-column">
                 <van-button size="large" :loading='state.loading' @click="SubmitForm">完成</van-button>
@@ -150,7 +152,7 @@ export default {
             this.state.showDate = false
         },
         onChange( picker, value, index ){
-            this.treeData.area = value[0].name + value[1].name + value[2].name
+            this.treeData[0].area = value[0].name + value[1].name + value[2].name
         },
         openArea(){
             this.state.showArea = true

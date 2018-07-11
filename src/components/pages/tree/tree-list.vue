@@ -46,10 +46,10 @@ export default {
             console.log(this.isFolder)
         },
         addKindLeft(i){
-            this.child.splice(i,0,{name:"儿子"})
+            this.model.children.splice(i,0,{name:"儿子"})
         },
         addKindRight(i){
-            this.child.splice(i+1,0,{name:"女儿"})
+            this.model.children.splice(i+1,0,{name:"女儿"})
         }
     }
 }

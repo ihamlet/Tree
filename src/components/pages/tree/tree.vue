@@ -44,7 +44,7 @@ export default {
             this.TreeData.splice(i+1,0,{name:"添加姐妹"})
         },
         addRoot(){
-            console.log(this.$root)
+            this.TreeData = [{name:'父母',children:this.TreeData}]
         }
     }
 }
