@@ -54,6 +54,7 @@ export default {
     overflow: scroll;
     height: 100%;
     float: left;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tree{
@@ -61,7 +62,12 @@ export default {
     white-space: nowrap;
     justify-content:center;
     vertical-align: top;
-    padding: 10px;
+    padding: 50px;
+}
+
+.addRoot{
+    justify-content:center;
+    display: flex;
 }
 </style>
 

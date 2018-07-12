@@ -1,12 +1,19 @@
 <template>
     <li class="list">
-        <div class="tree-info">
-            <span class="name">{{model.name}}</span>
-            <div class="add">
-                <span class="add-left" @click="addLeft">+</span>
-                <span class="add-right" @click="addRihgt">+</span>
+        <div class="tree-info" :class="model.sex">
+            <div class="avatar">
+                <img src="./../../../assets/logo.png" alt="头像">
             </div>
-            <div class="addChild" @click="addChild">+</div>
+            <div class="name">
+                <div class="txt">{{model.name}}</div>
+            </div>
+            <div class="add">
+                <div class="add-left" @click="addLeft">
+                    +
+                </div>
+                <div class="add-right" @click="addRihgt">+</div>
+            </div>
+            <div class="addChild" v-if='!isFolder' @click="addChild">+</div>
         </div>
 
         <ul class="item" v-if='model.children' v-for='(cel,i) in model.children'>
@@ -46,10 +53,10 @@ export default {
             console.log(this.isFolder)
         },
         addKindLeft(i){
-            this.model.children.splice(i,0,{name:"儿子"})
+            this.model.children.splice(i,0,{name:"添加兄弟"})
         },
         addKindRight(i){
-            this.model.children.splice(i+1,0,{name:"女儿"})
+            this.model.children.splice(i+1,0,{name:"添加姐妹"})
         }
     }
 }
@@ -65,16 +72,24 @@ export default {
 
 .list{
     text-align: center;
+    margin: 0 10px;
 }
 
 .tree-info{
     position: relative;
-    width: 100px;
-    margin: 0 auto;
+    margin: 10px auto;
+    width: 45px;
 }
 
-.add,.addKind{
-    width: 100px;
+.name{
+    white-space: initial;
+}
+
+.txt{
+    width: 17px;
+    margin: 0 auto;
+    text-align: justify;
+    padding: 10px 0;
 }
 
 .list.children .add{
@@ -84,6 +99,11 @@ export default {
 .add-left,.add-right,.add-kind-left,.add-kind-right{
     position: absolute;
     top: 0;
+}
+
+.tree-info.man{
+    background: #0c64ff;
+    color: #fff;
 }
 
 .addParent{
@@ -99,6 +119,21 @@ export default {
 .add-right,.add-kind-right{
     right: 0;
 }
+
+.tree-info.man .avatar{
+    background: #0c64ff;
+}
+
+.avatar{
+   width: 45px;
+   height: 45px;
+}
+
+.avatar img{
+    width: 100%;
+}
+
+
 
 </style>
 
