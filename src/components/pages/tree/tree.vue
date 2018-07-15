@@ -38,10 +38,10 @@ export default {
     },
     methods:{
         addLeft(i){
-            this.TreeData.splice(i,0,{name:"添加兄弟"})
+            this.TreeData.splice(i,0,{name:"添加兄弟",sex:'man'})
         },
         addRight(i){
-            this.TreeData.splice(i+1,0,{name:"添加姐妹"})
+            this.TreeData.splice(i+1,0,{name:"添加姐妹",sex:'woman'})
         },
         addRoot(){
             this.TreeData = [{name:'父母',children:this.TreeData}]

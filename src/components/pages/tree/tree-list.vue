@@ -8,9 +8,7 @@
                 <div class="txt">{{model.name}}</div>
             </div>
             <div class="add">
-                <div class="add-left" @click="addLeft">
-                    +
-                </div>
+                <div class="add-left" @click="addLeft">+</div>
                 <div class="add-right" @click="addRihgt">+</div>
             </div>
             <div class="addChild" v-if='!isFolder' @click="addChild">+</div>
@@ -53,10 +51,10 @@ export default {
             console.log(this.isFolder)
         },
         addKindLeft(i){
-            this.model.children.splice(i,0,{name:"添加兄弟"})
+            this.model.children.splice(i,0,{name:"添加兄弟",sex:'man'})
         },
         addKindRight(i){
-            this.model.children.splice(i+1,0,{name:"添加姐妹"})
+            this.model.children.splice(i+1,0,{name:"添加姐妹",sex:'woman'})
         }
     }
 }
@@ -103,6 +101,11 @@ export default {
 
 .tree-info.man{
     background: #0c64ff;
+    color: #fff;
+}
+
+.tree-info.woman{
+    background: #42b983;
     color: #fff;
 }
 
